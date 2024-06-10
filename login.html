@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星际商城登录界面</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+  <div class="login">
+    <div class="wrap-box">
+      <!-- 切换登录场景 -->
+      <div class="multi-type">
+        <a href="javascript:;" data-label="#account" class="label active">
+          账号登录
+        </a>
+        <a href="javascript:;" data-label="#secure" class="label">安全登录</a>
+        <a href="javascript:;" data-label="#phone" class="icon"></a>
+      </div>
+      <div class="login-type">
+        <!-- 账号登录 -->
+        <div class="account" id="account">
+          <form action="/loginServlet" class="login_form">
+            <div class="input-box username">
+              <input type="text" name="userName" id="userName" placeholder="请输入用户名" />
+              <label for="userName"><span class=""></span></label>
+            </div>
+            <div class="input-box password">
+              <input type="password" name="pwd" id="password" placeholder="请输入密码" />
+              <label for="password"><span class=""></span></label>
+              <a href="javascript:;"><img src="./img/不显示密码.png" alt=""></a>
+            </div>
+            <div class="button-box">
+              <button>登录</button>
+            </div>
+          </form>
+
+          <div class="extra-box">
+            <label for="login_status">
+              <input id="login_status" type="checkbox" />
+              <span>记住我</span>
+            </label>
+            <a href="javascript:;">忘记密码</a>
+          </div>
+
+          <p class="text-box">
+            还没有账号? <a href="javascript:;">立即注册!</a>
+          </p>
+          <p class="social-box">
+            <span>基它登录：</span>
+            <a href="javascript:;" class="taobao"></a>
+            <a href="javascript:;" class="qq"></a>
+            <a href="javascript:;" class="yidong"></a>
+            <a href="javascript:;" class="tianyi"></a>
+            <a href="javascript:;" class="qihu"></a>
+          </p>
+        </div>
+        <!-- 手机号登录 -->
+        <div class="phone" id="phone">
+          <form action="">
+            <div class="input-box phone-number">
+              <input type="text" />
+            </div>
+            <div class="verify-box">
+              <button>获取短信验证码</button>
+              <input class="code" type="text" />
+            </div>
+            <div class="extra-box">
+              <label for="login_status">
+                <input id="login_status" type="checkbox" />
+                <span>记住我</span>
+              </label>
+              <a href="javascript:;">忘记密码</a>
+            </div>
+            <div class="button-box">
+              <button>登录</button>
+
+            </div>
+          </form>
+          <p class="text-box">
+            还没有账号? <a href="javascript:;">立即注册!</a>
+          </p>
+          <p class="social-box">
+            <span>其它登录：</span>
+            <a href="java]script:;" class="taobao"></a>
+            <a href="javascript:;" class="qq"></a>
+            <a href="javascript:;" class="yidong"></a>
+            <a href="javascript:;" class="tianyi"></a>
+            <a href="javascript:;" class="qihu"></a>
+          </p>
+        </div>
+        <!-- 二维码登录 -->
+        <div class="secure" id="secure">
+          <div class="qrcode">
+            <img src="./img/QRcode.png" alt="" />
+            <span>请用微信二维码登录</span>
+          </div>
+          <p>还没有账号？<a href="javascript:;">立即注册!</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 引入 jQuery -->
+  <script src="./jquery/jquery-3.7.1.min.js"></script>
+  <script src="./js/axios-0.18.0.js"></script>
+  <script src="./js/login.js"></script>
+
+  <script>
+    // $("#account form").click(
+    //   function(){
+    //   let resq = $(this).serialize();
+    //   // let url = "htttp:localhost:8080/loginServlet"
+    //   let url = "http://localhost:8080/loginServlet";
+    //   // Web服务器地址: "http:// localhost:8080 /loginServlet"
+
+    //   axios.post(url, resq)
+    //     .then(resp => {
+    //       console.log(resp)
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    //   e.preventDefault();
+    // }
+    // )
+
+    $("#userName").click(
+      function(){
+        $(".username").css("border", "1px solid #d87224");
+      }
+    ).blur(
+      function() {
+      $(".username").css("border", 0);
+      }
+    );
+
+    $("#password").click(
+      function(){
+        $(".password").css("border", "1px solid #d87224");
+      }
+    ).blur(
+      function() {
+      $(".password").css("border", 0);
+      }
+    );
+
+
+    /* TODO:  更改 */
+    let domain = "localhost"
+
+
+    document.querySelector("#account form").onsubmit = function (e) {
+      // 阻止默认提交事件
+      e.preventDefault();
+      // alert("提交事件");
+      // e.preventDefalut();
+      // 点击登录按钮,后台返回的的是boolean值
+      let url = `http://${domain}:8080/loginServlet`;
+      let userName = document.querySelector("#account #userName").value.trim();
+      let password = document.querySelector("#account #password").value.trim();
+      if(userName && password){
+        let reqs = `userName=${userName}&password=${password}`;
+      // alert(reqs);
+      axios.post(url, reqs)
+        .then(res => {
+          let data = res.data;
+          // 如果登录成功,跳转到购物车页面
+          if (data) {
+            alert("登录成功!");
+            setTimeout(() => {
+              this.reset();
+              location.href = "checkout.html";
+            }, 1000);
+          }else{
+            alert("用户名或密码不正确");
+          }
+        })
+        .catch(err => {
+          // console.error(err); 
+        })
+      
+      }else{
+        alert("用户名或密码不正确");
+      }
+    }
+
+    document.querySelector("#account #userName").onblur = function () {
+      // flag:表示是否存在该账号
+      // mess:表示要提示的信息
+      let url = `http://${domain}:8080/UserValidServlet`;
+      let userName = this.value;
+      let req = "userName="+userName;
+        axios.post(url,req)
+        .then(
+          response => {
+            console.log(response.data);
+            let info = response.data;
+            console.log(response);
+            let span = document.querySelector(".username span");
+            span.innerHTML = info.mess;
+            span.classList.remove();
+            if(info.flag){
+              span.classList.remove("invalid_mes");
+              span.classList.add("valid_mes");
+            }else{
+              span.classList.remove("valid_mes");
+              span.classList.add("invalid_mes");
+            }
+          }
+        )
+      }
+
+      document.querySelector("#account #password").onblur = function(){
+        let url = `http://${domain}:8080/PasswordValidServlet`;
+        let password = this.value;
+        let requst = "password=" + password;
+        axios.post(url,requst)
+        .then(
+          res=>{
+            // console.log(res);
+            let info = res.data;
+            // console.log(info);
+            let span = document.querySelector(".password span");
+            console.log(info.flag);
+            span.innerHTML = info.mess;
+            if(info.flag){
+              console.log("合法");
+              // TODO: 注意我这里的逻辑错了,添加一个类后要把另一个类去掉
+              span.classList.remove("invalid_mes");
+              span.classList.add("valid_mes");
+            }else{
+              span.classList.remove("valid_mes");
+              span.classList.add("invalid_mes");
+            }
+          }
+        )
+      }
+
+      let visible = false;
+      $(".password a").click(
+        function(){
+          if(!visible){
+            $("#password").attr("type","text");
+            $(this).children().attr("src","./img/显示密码.png");
+            visible = true;
+        }else{
+          $("#password").attr("type","password");
+          $(this).children().attr("src","./img/不显示密码.png");
+
+          visible = false;
+        }
+        }
+        
+      )
+  </script>
+</body>
+
+</html>

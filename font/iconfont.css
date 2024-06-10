@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 4563867 */
+  src: url('iconfont.woff2?t=1716862086551') format('woff2'),
+       url('iconfont.woff?t=1716862086551') format('woff'),
+       url('iconfont.ttf?t=1716862086551') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-banner_dianer1:before {
+  content: "\e60f";
+}
+
+.icon-lianxirenguanli:before {
+  content: "\e645";
+}
+
+.icon-banner_dianer:before {
+  content: "\e641";
+}
+
+.icon-icon-test1:before {
+  content: "\e640";
+}
+
+.icon-icon-test2:before {
+  content: "\e657";
+}
+
+.icon-icon-test3:before {
+  content: "\e658";
+}
+
+.icon-icon-test4:before {
+  content: "\e659";
+}
+
+.icon-icon-test5:before {
+  content: "\e65a";
+}
+
+.icon-icon-test6:before {
+  content: "\e65b";
+}
+
+.icon-icon-test7:before {
+  content: "\e65c";
+}
+
+.icon-icon-test8:before {
+  content: "\e65d";
+}
+
+.icon-icon-test9:before {
+  content: "\e65e";
+}
+
+.icon-icon-test10:before {
+  content: "\e65f";
+}
+
+.icon-icon-test11:before {
+  content: "\e660";
+}
+
+.icon-icon-test12:before {
+  content: "\e661";
+}
+
+.icon-alipay:before {
+  content: "\e666";
+}
+
+.icon-go-top:before {
+  content: "\e787";
+}
+
+.icon-icon-test:before {
+  content: "\e63b";
+}
+

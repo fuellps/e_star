@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/associate.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <img src="./img/chat.jpg" alt="图片">
+        </div>
+        <div class="right">
+            <h2 style="text-align: center;">留言板</h2>
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>性别：</label>
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">男</label>
+                    <input type="radio" id="female" name="gender" value="female" required>
+                    <label for="female">女</label>
+                </div>
+                <div class="form-group">
+                    <label for="phone">手机号：</label>
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">电子邮箱：</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <div class="message">
+                        <label for="message">留言：<p>已输入<span>0</span> 字</p></label>
+                        
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                </div>
+                <button type="button" id="submitButton" onclick="submitForm()" disabled>发送</button>
+            </form>
+        </div>
+    </div>
+    <script src="./jquery/jquery-3.7.1.min.js"></script>
+    <script>
+        function validateForm() {
+            var isValid = document.getElementById('messageForm').checkValidity();
+            if (isValid) {
+                document.getElementById('submitButton').removeAttribute('disabled');
+            } else {
+                document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+            }
+        }
+
+        function submitForm() {
+            var name = document.getElementById('name').value;
+            var gender = document.querySelector('input[name="gender"]:checked').value;
+            var phone = document.getElementById('phone').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            // 在这里你可以使用获取到的表单数据执行相应的操作，比如发送到服务器或者展示在页面上。
+            // 这里只是一个简单的示例，你可以根据实际需求来处理这些数据。
+
+            alert('谢谢，' + name + '！我会通过电话 ' + phone + ' 或邮箱 ' + email + ' 联系您。');
+
+            // 清空表单
+            document.getElementById('messageForm').reset();
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        }
+        document.getElementById('messageForm').addEventListener('input', validateForm);
+
+        $("input").focus(
+            function(){
+                $(this).addClass("active");
+            }
+        ).blur(function(){
+            $(this).removeClass("active");
+        })
+
+        $("textarea").focus(
+            function(){
+                $(this).addClass("active");
+            }
+        ).blur(function(){
+            $(this).removeClass("active");
+        })
+
+        $(".message textarea").on("input",function(){
+            // console.log("输入事件");
+            $(".message span").text($(this).val().length);
+        })
+    </script>
+</body>
+
+</html>

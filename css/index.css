@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* border: 2px solid #000; */
+}
+
+/* header * {
+    border: 0;
+} */
+header {
+
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    /* background-color: #f0f0f0; */
+
+}
+
+.container {
+    width: 1100px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 0 15px;
+}
+
+.flex {
+    display: flex;
+}
+
+
+/* header {
+    background-color: #f6f6f6;
+} */
+/* 头部及导航区域 */
+header .header_info {
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 头部打字欢迎样式 */
+header .header_info .typing {
+    display: inline-block;
+    width: 23ch;
+    font: bold 200% Consolas, Monaco, monospace;
+    /*等宽字体*/
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 500;
+    border-right: 1px solid transparent;
+    animation: typing 10s steps(23) infinite, caret .5s steps(2) infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@keyframes caret {
+    50% {
+        border-right-color: currentColor;
+    }
+}
+
+header .container a {
+    display: blcok;
+    height: 100%;
+}
+
+header .container img {
+    height: 100%;
+}
+
+
+.top_picture {
+    width: 100%;
+    height: 350px;
+}
+
+.top_picture img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* 购物车盒子 */
+.cart {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+}
+
+/* 设置a标签宽高为父级 */
+.cart a {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5px;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.cart a:hover {
+    background-color: rgb(31, 175, 223);
+}
+
+
+/* 将商品数量定位在购物车上 */
+.goods-count {
+    position: absolute;
+    top: 8px;
+    right: 0px;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 15px;
+    line-height: 15px;
+    background-color: red;
+    color: #fff;
+}
+
+/* 导航区域nav */
+/* nav{ */
+/* background-color: #f0f0f0; */
+/* background-color: #fffeff; */
+/* } */
+.nav_info {
+    /* border: 1px solid #fefefe; */
+    font-weight: bold;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.nav_info li {
+    width: 100%;
+    height: 100%;
+}
+
+.nav_info li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 50px;
+}
+
+
+.nav_info li a:hover {
+    background-color: rgb(31, 175, 223);
+}
+
+
+/* banner区域 */
+.banner .container {
+    position: relative;
+    height: 362px;
+    overflow: hidden;
+}
+
+
+
+.banner .container a img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* .banner .container li.cur{
+    position: relative;
+} */
+
+/* 左右箭头 */
+.banner .container li.cur .left_arrow,
+.banner .container li.cur .right_arrow {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    transition: all 0.3s;
+    top: 182px;
+    border: 1px solid #000;
+}
+
+.banner .container li.cur .left_arrow {
+    left: 30px;
+    animation: left_arrow_move 1.2s infinite linear;
+}
+
+.banner .container li.cur .right_arrow {
+    animation: right_arrow_move 1.2s infinite linear;
+    right: 30px;
+}
+
+.banner .container li.cur .right_arrow:hover,
+.banner .container li.cur .left_arrow:hover {
+    background-color: rgb(31, 175, 223);
+}
+
+
+@keyframes left_arrow_move {
+    from {
+        margin-left: 15px;
+    }
+
+    to {
+        padding: 0;
+    }
+}
+
+@keyframes right_arrow_move {
+    from {
+        margin-right: 15px;
+    }
+
+    to {
+        margin: 0;
+    }
+}
+
+
+.banner .cur .dot {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    /* width: 64px; */
+    left: 450px;
+    bottom: 5px;
+}
+
+.banner .cur .dot a {
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+
+/* shopping */
+.slick-prev:before, .slick-next:before{
+    color: aquamarine;
+}
+.slick-next .slick-arrow{
+    color: #000;
+}
+.shopping .shopp_slider {
+    width: 1070px;
+    height: 500px;
+}
+
+.shopping img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+/*product区域  */
+
+.product {
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #fff;
+}
+
+.product .container h2 {
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.product .container ul {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.product .container li {
+    width: 30%;
+}
+
+.product .container li a {
+    display: block;
+}
+
+.product .container li img {
+    width: 100%;
+    object-fit: cover;
+}
+
+
+footer {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #1e1e1e;
+    height: 300px;
+}
+
+/* 使用定位到版权底部 */
+.copyright {
+    position: relative;
+}
+
+.copyright p {
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    bottom: 20px;
+}
